@@ -1,0 +1,8 @@
+1. Task Manager App
+Description: Build an app where users can create, organize, and track their tasks or to-do lists. Allow users to add deadlines, set priorities, and mark tasks as completed.
+Features:
+User authentication
+Categorize tasks (work, personal, etc.)
+Task priority levels
+Calendar integration
+Reminders via email or notifications
