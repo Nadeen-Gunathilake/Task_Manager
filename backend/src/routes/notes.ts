@@ -1,16 +1,16 @@
 import express from "express";
-import * as NotesController from "../controllers/notes";
+import * as TasksController from "../controllers/tasks";
 
 const router = express.Router();
 
-router.get("/",NotesController.getNotes);
+router.get("/",TasksController.getTasks);
 
-router.get("/:noteId",NotesController.getNote);
+router.get("/:noteId",TasksController.getTask);
 
-router.post("/",NotesController.createNote);
+router.post("/",TasksController.createTask);
 
-router.patch("/:noteId",NotesController.updateNote);
+router.patch("/:noteId",TasksController.updateTask);
 
-router.delete("/:noteId",NotesController.deleteNote);
+router.delete("/:noteId",TasksController.deleteTask);
 
 export default router;
