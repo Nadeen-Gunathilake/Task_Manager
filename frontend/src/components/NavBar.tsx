@@ -16,7 +16,7 @@ const NavBar = ({ loggedInUser, onSignUpClicked, onLoginClicked, onLogoutSucessf
         <Navbar bg="primary" variant="dark" expand="sm" sticky="top">
             <Container>
                 <Navbar.Brand as={Link} to="/">
-                    Cool Notes App
+                    Task Manager
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="main-navbar" />
                 <Navbar.Collapse id="main-navbar">

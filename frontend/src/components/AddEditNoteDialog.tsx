@@ -1,5 +1,5 @@
 import { Button, Form, FormGroup, Modal } from "react-bootstrap";
-import { Note } from "../models/note";
+import { Note } from "../models/task";
 import { NoteInput } from "../network/notes_api";
 import { useForm } from "react-hook-form";
 import * as NotesApi from "../network/notes_api";

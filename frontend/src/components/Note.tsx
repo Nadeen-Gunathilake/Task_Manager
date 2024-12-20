@@ -1,7 +1,7 @@
 import styles from "../styles/Note.module.css";
 import styleUtils from "../styles/utils.module.css";
 import { Card } from "react-bootstrap";
-import { Note as NoteModel } from "../models/note";
+import { Note as NoteModel } from "../models/task";
 import { formatDate } from "../utils/formatDate";
 import {MdDelete} from "react-icons/md";
 
