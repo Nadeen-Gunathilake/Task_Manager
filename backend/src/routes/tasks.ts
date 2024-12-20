@@ -5,12 +5,12 @@ const router = express.Router();
 
 router.get("/",TasksController.getTasks);
 
-router.get("/:noteId",TasksController.getTask);
+router.get("/:taskId",TasksController.getTask);
 
 router.post("/",TasksController.createTask);
 
-router.patch("/:noteId",TasksController.updateTask);
+router.patch("/:taskId",TasksController.updateTask);
 
-router.delete("/:noteId",TasksController.deleteTask);
+router.delete("/:taskId",TasksController.deleteTask);
 
 export default router;
