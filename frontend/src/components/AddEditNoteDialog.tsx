@@ -1,36 +1,37 @@
 import { Button, Form, FormGroup, Modal } from "react-bootstrap";
-import { Note } from "../models/task";
-import { NoteInput } from "../network/notes_api";
+import { Task } from "../models/task";
+import { TaskInput } from "../network/tasks_api";
 import { useForm } from "react-hook-form";
-import * as NotesApi from "../network/notes_api";
-import TextInputField from "./from/TextInputField";
+import * as TasksApi from "../network/tasks_api";
+import TextInputField from "./form/TextInputField";
 
-interface AddEditNoteDialogProps {
-    noteToEdit?: Note,
+interface AddEditTaskDialogProps {
+    taskToEdit?: Task,
     onDismiss: () => void,
-    onNoteSaved: (note: Note) => void,
+    onTaskSaved: (note: Task) => void,
 }
 
-const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved }: AddEditNoteDialogProps) => {
+const AddEditTaskDialog = ({ taskToEdit, onDismiss, onTaskSaved }: AddEditTaskDialogProps) => {
 
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<NoteInput>({
+    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<TaskInput>({
         defaultValues: {
-            title: noteToEdit?.title || "",
-            text: noteToEdit?.text || "",
+            title: taskToEdit?.title || "",
+            text: taskToEdit?.text || "",
+            category: taskToEdit?.text || "",
         }
     });
 
-    async function onSubmit(input: NoteInput) {
+    async function onSubmit(input: TaskInput) {
         try {
-            let noteResponse: Note;
-            if (noteToEdit) {
-                noteResponse = await NotesApi.updateNote(noteToEdit._id, input);
+            let taskResponse: Task;
+            if (taskToEdit) {
+                taskResponse = await TasksApi.updateNote(taskToEdit._id, input);
             }
             else {
-                noteResponse = await NotesApi.createNote(input);
+                taskResponse = await TasksApi.createTask(input);
             }
 
-            onNoteSaved(noteResponse);
+            onTaskSaved(taskResponse);
 
         } catch (error) {
             console.error(error);
@@ -42,12 +43,12 @@ const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved }: AddEditNoteDi
         <Modal show onHide={onDismiss}>
             <Modal.Header closeButton>
                 <Modal.Title>
-                    {noteToEdit ? "Edit note" : "Add note"}
+                    {taskToEdit ? "Edit task" : "Add task"}
                 </Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
-                <Form id="addEditNoteForm" onSubmit={handleSubmit(onSubmit)}>
+                <Form id="addEditTaskForm" onSubmit={handleSubmit(onSubmit)}>
                     <TextInputField
                         name="title"
                         label="Title"
@@ -67,12 +68,22 @@ const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved }: AddEditNoteDi
                         register={register}
                     />
 
+                    <Form.Group controlId="formCategory">
+                        <Form.Label>Category</Form.Label>
+                        <Form.Select name="category" aria-label="Select category">
+                            <option value="">Select</option>
+                            <option value="work">Work</option>
+                            <option value="personal">Personal</option>
+                        </Form.Select>
+                    </Form.Group>
+
+
                 </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button
                     type="submit"
-                    form="addEditNoteForm"
+                    form="addEditTaskForm"
                     disabled={isSubmitting}
                 >
                     Save
@@ -82,4 +93,4 @@ const AddEditNoteDialog = ({ noteToEdit, onDismiss, onNoteSaved }: AddEditNoteDi
     );
 }
 
-export default AddEditNoteDialog;
+export default AddEditTaskDialog;

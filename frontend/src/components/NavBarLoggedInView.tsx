@@ -1,6 +1,6 @@
 import { Button, Navbar } from "react-bootstrap";
 import { User } from "../models/user";
-import * as NotesApi from "../network/notes_api";
+import * as TasksApi from "../network/tasks_api";
 
 interface NavBarLoggedInViewProps{
     user:User,
@@ -12,7 +12,7 @@ const NavBarLoggedInView = ({user,onLogoutSucessful}:NavBarLoggedInViewProps) =>
 
     async function logout() {
         try {
-            await NotesApi.logout();
+            await TasksApi.logout();
             onLogoutSucessful();
         } catch (error) {
             console.error(error);

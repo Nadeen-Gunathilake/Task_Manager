@@ -1,25 +1,26 @@
 import styles from "../styles/Note.module.css";
 import styleUtils from "../styles/utils.module.css";
 import { Card } from "react-bootstrap";
-import { Note as NoteModel } from "../models/task";
+import { Task as TaskModel } from "../models/task";
 import { formatDate } from "../utils/formatDate";
 import {MdDelete} from "react-icons/md";
 
 
-interface NoteProps {
-    note: NoteModel,
-    onNoteClicked:(note:NoteModel)=>void,
-    onDeleteNoteClicked:(note:NoteModel)=>void,
+interface TaskProps {
+    task: TaskModel,
+    onTaskClicked:(note:TaskModel)=>void,
+    onDeleteTaskClicked:(note:TaskModel)=>void,
     className?: string,
 }
 
-const Note = ({ note,onNoteClicked,onDeleteNoteClicked, className }: NoteProps) => {
+const Task = ({ task,onTaskClicked,onDeleteTaskClicked, className }: TaskProps) => {
     const {
         title,
         text,
+        category,
         createdAt,
         updatedAt
-    } = note;
+    } = task;
 
     let createdUpdatedText:string;
     if(updatedAt>createdAt){
@@ -31,7 +32,7 @@ const Note = ({ note,onNoteClicked,onDeleteNoteClicked, className }: NoteProps) 
     return (
         <Card 
         className={`${styles.noteCard} ${className}`}
-        onClick={()=>onNoteClicked(note)} >
+        onClick={()=>onTaskClicked(task)} >
            
                         <Card.Body className={styles.cardBody}>
                 <Card.Title className={styleUtils.flexCenter}>
@@ -39,13 +40,14 @@ const Note = ({ note,onNoteClicked,onDeleteNoteClicked, className }: NoteProps) 
                     <MdDelete
                     className="text-muted ms-auto"
                     onClick={(e)=>{
-                        onDeleteNoteClicked(note);
+                        onDeleteTaskClicked(task);
                         e.stopPropagation();
                     }}
                     />
                 </Card.Title>
                 <Card.Text className={styles.cardText}>
-                    {text}
+                    {text}<br/>
+                    {category}
                 </Card.Text>
             </Card.Body>
             <Card.Footer className="text-muted">
@@ -57,4 +59,4 @@ const Note = ({ note,onNoteClicked,onDeleteNoteClicked, className }: NoteProps) 
 
 }
 
-export default Note;
+export default Task;
