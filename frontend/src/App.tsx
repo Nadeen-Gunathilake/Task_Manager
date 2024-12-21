@@ -3,7 +3,7 @@ import NavBar from './components/NavBar';
 import SignUpModal from './components/SignUpModal';
 import { useEffect, useState } from "react";
 import { User } from './models/user';
-import * as NotesApi from "./network/notes_api";
+import * as NotesApi from "./network/tasks_api";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import NotesPage from './pages/NotesPage';

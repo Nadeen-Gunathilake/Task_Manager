@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { SignUpCredentials } from "../network/notes_api";
-import * as NotesApi from "../network/notes_api";
+import { SignUpCredentials } from "../network/tasks_api";
+import * as NotesApi from "../network/tasks_api";
 import { User } from "../models/user";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
-import TextInputField from "./from/TextInputField";
+import TextInputField from "./form/TextInputField";
 import styleUtils from "../styles/utils.module.css";
 import { useState } from "react";
 import { ConflictError } from "../errors/http_errors";

@@ -1,24 +1,24 @@
 import { Container } from "react-bootstrap";
-import NotesPageLoggedInView from "../components/NotesPageLoggedInView";
-import NotesPageLoggedOutView from "../components/NotesPageLoggedOutView";
+import TasksPageLoggedInView from "../components/TasksPageLoggedInView";
+import TasksPageLoggedOutView from "../components/NotesPageLoggedOutView";
 import styles from "../styles/NotesPage.module.css";
 import { User } from "../models/user";
 
-interface NotePageProps{
+interface TaskPageProps{
     loggedInUser:User | null,
 }
-const NotesPage = ({loggedInUser}:NotePageProps) => {
+const TasksPage = ({loggedInUser}:TaskPageProps) => {
     return ( 
-        <Container className={styles.notesPage}>
+        <Container className={styles.tasksPage}>
 
         <>
           {loggedInUser
-            ? <NotesPageLoggedInView />
-            : <NotesPageLoggedOutView />
+            ? <TasksPageLoggedInView />
+            : <TasksPageLoggedOutView />
           }
         </>
       </Container>
      );
 }
  
-export default NotesPage;
+export default TasksPage;
