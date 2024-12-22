@@ -6,7 +6,8 @@ import * as TasksApi from "../network/tasks_api";
 import styles from "../styles/NotesPage.module.css";
 import styleUtils from "../styles/utils.module.css";
 import AddEditTaskDialog from "./AddEditTaskDialog";
-import SeparationBar from "../components/SeperationBar";
+import SeparationWorkBar from "./SeperationWorkBar";
+import SeparationPersonalBar from "./SeperationPersonalBar";
 import Task from "./Task";
 
 
@@ -87,12 +88,14 @@ const TasksPageLoggedInView = () => {
             {showTasksLoadingError && <p>Something went wrong.Please refresh the page.</p>}
             {!tasksLoading && !showTasksLoadingError &&
                   <>
+                  <SeparationPersonalBar/>
+
                   {tasks.filter(task => task.category === "personal").length > 0
                       ? tasksGrid
                       : <p>You don't have any personal tasks yet</p>
                   }
 
-                  <SeparationBar/>
+                  <SeparationWorkBar/>
 
                   {tasks.filter(task => task.category === "work").length > 0
                       ? tasksGrid2
