@@ -57,6 +57,7 @@ export interface LoginCredentials {
     password: string,
 }
 
+
 export async function login(credentials: LoginCredentials): Promise<User> {
     const response = await fetchData("/api/users/login",
         {
@@ -75,7 +76,7 @@ export async function logout() {
 
 }
 
-export async function fetchNotes(): Promise<Task[]> {
+export async function fetchTasks(): Promise<Task[]> {
     const response = await fetchData("/api/tasks", { method: "GET" });
     return response.json();
 
@@ -84,7 +85,7 @@ export async function fetchNotes(): Promise<Task[]> {
 export interface TaskInput {
     title: string,
     text?: string,
-    category?:string,
+    category:string,
 }
 
 export async function createTask(task: TaskInput): Promise<Task> {
@@ -104,7 +105,7 @@ export async function createTask(task: TaskInput): Promise<Task> {
 
 }
 
-export async function updateNote(taskId: string, task: TaskInput): Promise<Task> {
+export async function updateTask(taskId: string, task: TaskInput): Promise<Task> {
     const response = await fetchData("/api/tasks/" + taskId,
         {
             method: "PATCH",

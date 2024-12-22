@@ -24,7 +24,7 @@ const TasksPageLoggedInView = () => {
             try {
                 setShowTasksLoadingError(false);
                 setTasksLoading(true);
-                const tasks = await TasksApi.fetchNotes();
+                const tasks = await TasksApi.fetchTasks();
                 setTasks(tasks);
             } catch (error) {
                 console.error(error);
