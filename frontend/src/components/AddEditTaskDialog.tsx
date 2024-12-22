@@ -17,7 +17,7 @@ const AddEditTaskDialog = ({ taskToEdit, onDismiss, onTaskSaved }: AddEditTaskDi
         defaultValues: {
             title: taskToEdit?.title || "",
             text: taskToEdit?.text || "",
-            category: taskToEdit?.category || "",
+            category: taskToEdit?.category || ""
         }
     });
 
@@ -25,7 +25,7 @@ const AddEditTaskDialog = ({ taskToEdit, onDismiss, onTaskSaved }: AddEditTaskDi
         try {
             let taskResponse: Task;
             if (taskToEdit) {
-                taskResponse = await TasksApi.updateNote(taskToEdit._id, input);
+                taskResponse = await TasksApi.updateTask(taskToEdit._id, input);
             }
             else {
                 taskResponse = await TasksApi.createTask(input);
@@ -70,11 +70,16 @@ const AddEditTaskDialog = ({ taskToEdit, onDismiss, onTaskSaved }: AddEditTaskDi
 
                     <Form.Group controlId="formCategory">
                         <Form.Label>Category</Form.Label>
-                        <Form.Select name="category" aria-label="Select category">
+                        <Form.Select
+                            {...register("category", { required: "Category is required" })}
+                            aria-label="Select category"
+                        >
                             <option value="">Select</option>
                             <option value="work">Work</option>
                             <option value="personal">Personal</option>
                         </Form.Select>
+                        {errors.category && <p className="text-danger">{errors.category.message}</p>}
+                        
                     </Form.Group>
 
 
