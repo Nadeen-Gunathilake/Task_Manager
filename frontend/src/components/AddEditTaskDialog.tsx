@@ -17,7 +17,7 @@ const AddEditTaskDialog = ({ taskToEdit, onDismiss, onTaskSaved }: AddEditTaskDi
         defaultValues: {
             title: taskToEdit?.title || "",
             text: taskToEdit?.text || "",
-            category: taskToEdit?.text || "",
+            category: taskToEdit?.category || "",
         }
     });
 
