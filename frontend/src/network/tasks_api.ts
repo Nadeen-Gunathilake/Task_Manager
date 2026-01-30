@@ -3,7 +3,8 @@ import { Task } from "../models/task";
 import { User } from "../models/user";
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
-    const response = await fetch(input, init);
+    const API_URL = "https://task-manager-npso.onrender.com";
+    const response = await fetch(API_URL + input, init);
     if (response.ok) {
         return response;
     } else {
